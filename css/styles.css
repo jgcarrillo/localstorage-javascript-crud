@@ -66,11 +66,12 @@ input[type='text'] {
 table,
 thead,
 tbody,
-th {
+th,
+td {
 	border: 1px solid black;
 }
 
-table {
+.table thead {
 	background-color: var(--bg-table);
 }
 
@@ -87,4 +88,9 @@ thead {
 .table th {
 	padding-right: 5rem;
 	padding-left: 5rem;
+}
+
+tr:nth-child(even) {
+	background-color: #444;
+	color: white;
 }
