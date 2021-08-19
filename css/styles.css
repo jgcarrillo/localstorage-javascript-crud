@@ -79,12 +79,12 @@ thead {
 	font-size: 1.3rem;
 }
 
-.task__table {
+.table {
 	margin-right: auto;
 	margin-left: auto;
 }
 
-.task__table th {
+.table th {
 	padding-right: 5rem;
 	padding-left: 5rem;
 }
