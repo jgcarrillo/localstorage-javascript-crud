@@ -32,11 +32,24 @@ const saveTask = () => {
  ** SHOW TASKS
  *************/
 const showTask = () => {
+	tableBody.innerHTML = '';
+
 	taskList = JSON.parse(localStorage.getItem('tasks'));
 
 	if (taskList === null) {
 		taskList = [];
 	} else {
+		// RENDER HERE THE TASKS
+		taskList.forEach((element, index) => {
+			tableBody.innerHTML += `
+				<tr>
+					<td>${index}</td>
+					<td>${element.task}</td>
+					<td>Edit</td>
+					<td>Delete</td>
+				</tr>
+			`;
+		});
 		console.log(taskList);
 	}
 };
