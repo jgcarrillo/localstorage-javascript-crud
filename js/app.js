@@ -3,10 +3,11 @@ const btn = document.querySelector('#btn');
 const taskContainer = document.querySelector('.task__container');
 const tableBody = document.querySelector('.table__body');
 
-// let id = 1;
+let taskList = [];
 
-const taskList = [];
-
+/**************
+ ** CREATE TASK
+ **************/
 const createTask = (task) => {
 	const newTask = {
 		task,
@@ -18,62 +19,42 @@ const createTask = (task) => {
 	return newTask;
 };
 
+/************
+ ** SAVE TASK
+ ************/
 const saveTask = () => {
 	localStorage.setItem('tasks', JSON.stringify(taskList));
+
+	showTask();
 };
 
+/*************
+ ** SHOW TASKS
+ *************/
 const showTask = () => {
-	localStorage.getItem('taskList');
+	taskList = JSON.parse(localStorage.getItem('tasks'));
+
+	if (taskList === null) {
+		taskList = [];
+	} else {
+		console.log(taskList);
+	}
 };
 
+/*********
+ ** EVENTS
+ *********/
 btn.addEventListener('click', (e) => {
 	e.preventDefault();
+
+	if (taskText.value == '') {
+		alert('Input value cannot be empty!');
+		return;
+	}
 
 	createTask(taskText.value);
 	saveTask();
 	taskText.value = '';
-	console.log(taskList);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-	localStorage.getItem('taskList');
-	console.log(taskList);
-});
-
-/*
-const createTask = (e) => {
-	e.preventDefault();
-
-	if (taskText.value == '') {
-		alert('error');
-		return;
-	}
-
-	const $tr = document.createElement('tr');
-
-	const $tdId = document.createElement('td');
-	$tdId.textContent = `${id++}`;
-
-	const $tdTask = document.createElement('td');
-	$tdTask.textContent = `${taskText.value}`;
-
-	const $tdEdit = document.createElement('td');
-	$tdEdit.textContent = 'EDIT';
-
-	const $tdDelete = document.createElement('td');
-	$tdDelete.textContent = 'DELETE';
-
-	$tr.appendChild($tdId);
-	$tr.append($tdTask);
-	$tr.appendChild($tdEdit);
-	$tr.appendChild($tdDelete);
-
-	tableBody.appendChild($tr);
-
-	taskText.value = '';
-};
-
-const deleteTask = (e) => {};
-
-btn.addEventListener('click', createTask);
-*/
+document.addEventListener('DOMContentLoaded', showTask);
