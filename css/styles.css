@@ -21,7 +21,6 @@ body {
 	grid-template-rows: 1fr;
 	grid-template-areas: 'task input button';
 	gap: 1.4rem;
-	width: 90%;
 	margin: 3rem auto;
 }
 
@@ -93,4 +92,30 @@ thead {
 tr:nth-child(even) {
 	background-color: #444;
 	color: white;
+}
+
+@media only screen and (max-width: 870px) {
+	.form {
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(3, 1fr);
+		grid-template-areas:
+			'task'
+			'input'
+			'button';
+	}
+
+	.form__label {
+		width: 100%;
+		text-align: center;
+	}
+
+	input[type='text'] {
+		width: 70%;
+	}
+
+	.button {
+		width: 30%;
+		margin-left: auto;
+		margin-right: auto;
+	}
 }
