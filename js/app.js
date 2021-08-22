@@ -3,13 +3,50 @@ const btn = document.querySelector('#btn');
 const taskContainer = document.querySelector('.task__container');
 const tableBody = document.querySelector('.table__body');
 
-let id = 1;
+// let id = 1;
 
+const taskList = [];
+
+const createTask = (task) => {
+	const newTask = {
+		task,
+		value: true,
+	};
+
+	taskList.push(newTask);
+
+	return newTask;
+};
+
+const saveTask = () => {
+	localStorage.setItem('tasks', JSON.stringify(taskList));
+};
+
+const showTask = () => {
+	localStorage.getItem('taskList');
+};
+
+btn.addEventListener('click', (e) => {
+	e.preventDefault();
+
+	createTask(taskText.value);
+	saveTask();
+	taskText.value = '';
+	console.log(taskList);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+	localStorage.getItem('taskList');
+	console.log(taskList);
+});
+
+/*
 const createTask = (e) => {
 	e.preventDefault();
 
 	if (taskText.value == '') {
 		alert('error');
+		return;
 	}
 
 	const $tr = document.createElement('tr');
@@ -39,3 +76,4 @@ const createTask = (e) => {
 const deleteTask = (e) => {};
 
 btn.addEventListener('click', createTask);
+*/
