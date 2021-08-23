@@ -12,7 +12,7 @@ let taskList = [];
 const createTask = (task) => {
 	const newTask = {
 		task,
-		value: true,
+		value: false,
 	};
 
 	taskList.push(newTask);
@@ -42,14 +42,25 @@ const showTask = () => {
 	} else {
 		// RENDER HERE THE TASKS
 		taskList.forEach((element, index) => {
-			tableBody.innerHTML += `
-				<tr>
-					<td>${index}</td>
-					<td>${element.task}</td>
-					<td><button class="button button-table button--edit" id="button-edit">Edit</button></td>
-					<td><button class="button button-table button--delete" id="button-delete">Delete</button></td>
-				</tr>
-			`;
+			if (element.value) {
+				tableBody.innerHTML += `
+					<tr class="done">
+						<td>${index}</td>
+						<td>${element.task}</td>
+						<td><button class="button button-table button--edit" id="button-edit">Done</button></td>
+						<td><button class="button button-table button--delete" id="button-delete">Delete</button></td>
+					</tr>
+				`;
+			} else {
+				tableBody.innerHTML += `
+					<tr class="notDone">
+						<td>${index}</td>
+						<td>${element.task}</td>
+						<td><button class="button button-table button--edit" id="button-edit">Done</button></td>
+						<td><button class="button button-table button--delete" id="button-delete">Delete</button></td>
+					</tr>
+				`;
+			}
 		});
 	}
 };
@@ -75,13 +86,14 @@ const deleteTask = (taskName) => {
  ************/
 const editTask = (taskName) => {
 	const urlTaskName = taskName.innerHTML;
-	const parentNode = taskName.parentNode;
 
-	taskList.forEach((elem, index) => {
-		if (elem.task === urlTaskName) {
-			parentNode.classList.toggle('done');
-		}
+	let indexArray = taskList.findIndex((elem) => {
+		return elem.task === urlTaskName;
 	});
+
+	taskList[indexArray].value = true;
+
+	saveTask();
 };
 
 /*********
@@ -113,7 +125,7 @@ taskContainer.addEventListener('click', (e) => {
 			deleteTask(url);
 		}
 
-		if (e.target.innerHTML === 'Edit') {
+		if (e.target.innerHTML === 'Done') {
 			editTask(editUrl);
 		}
 	}

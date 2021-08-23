@@ -111,6 +111,10 @@ thead {
 	background-color: lightgreen;
 }
 
+.notDone {
+	background-color: lightsalmon;
+}
+
 @media only screen and (max-width: 870px) {
 	.form {
 		grid-template-columns: 1fr;
