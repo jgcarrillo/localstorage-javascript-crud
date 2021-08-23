@@ -10,7 +10,7 @@
 -   [⚗️ Basic Usage](#-Basic-usage)
 -   [💛 Contact](#-contact)
 
-### About the project
+### 📁 About the project
 
 The project is divided in different functions that manage individually the different parts of the CRUD.
 
@@ -47,7 +47,7 @@ taskContainer.addEventListener('click', ...);
 document.addEventListener('DOMContentLoaded', showTask);
 ```
 
-### Basic usage
+### ⚗️ Basic usage
 
 The use of the app is very simple. You only need to add a new task **by pressing** the 'enter' key or the 'Add' button. Then the task will appeared in the HTML and you can select different options:
 
