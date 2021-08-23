@@ -7,7 +7,7 @@
 ## Table of contents 👇
 
 -   [📁 About the project](#-about-the-project)
--   [⚗️ Basic Usage](#-Basic-usage)
+-   [⚗️ Basic Usage](#-basic-usage)
 -   [💛 Contact](#-contact)
 
 ### 📁 About the project
@@ -47,7 +47,7 @@ taskContainer.addEventListener('click', ...);
 document.addEventListener('DOMContentLoaded', showTask);
 ```
 
-### ⚗️ Basic usage
+### ⚗️ Basic Usage
 
 The use of the app is very simple. You only need to add a new task **by pressing** the 'enter' key or the 'Add' button. Then the task will appeared in the HTML and you can select different options:
 
