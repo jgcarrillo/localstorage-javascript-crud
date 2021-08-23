@@ -1,4 +1,4 @@
-![image](assets/home.PNG)
+![image](assets/home.jpg)
 
 <div align="center">
     <b>💿💡 Basic web made with Vanilla JavaScript that persits data with Local Storage.</b>
