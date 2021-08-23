@@ -58,6 +58,10 @@ input[type='text'] {
 	transform: scale(1.1);
 }
 
+.button--delete {
+	font-size: 14px;
+}
+
 .task__container {
 	text-align: center;
 }
@@ -68,6 +72,11 @@ tbody,
 th,
 td {
 	border: 1px solid black;
+	cursor: pointer;
+}
+
+td {
+	padding: 0.4em 0.4em;
 }
 
 .table thead {

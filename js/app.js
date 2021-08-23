@@ -1,5 +1,6 @@
 const taskText = document.querySelector('#task');
 const btn = document.querySelector('#btn');
+const btnDelete = document.querySelector('#button-delete');
 const taskContainer = document.querySelector('.task__container');
 const tableBody = document.querySelector('.table__body');
 
@@ -28,6 +29,23 @@ const saveTask = () => {
 	showTask();
 };
 
+/**************
+ ** DELETE TASK
+ *************/
+const deleteTask = (taskName) => {
+	let indexArray;
+
+	taskList.forEach((elem, index) => {
+		if (elem.task === taskName) {
+			console.log(taskName);
+			indexArray = index;
+		}
+	});
+
+	taskList.splice(indexArray, 1);
+	saveTask();
+};
+
 /*************
  ** SHOW TASKS
  *************/
@@ -46,11 +64,10 @@ const showTask = () => {
 					<td>${index}</td>
 					<td>${element.task}</td>
 					<td>Edit</td>
-					<td>Delete</td>
+					<td><button class="button button--delete" id="button-delete">Delete</button></td>
 				</tr>
 			`;
 		});
-		console.log(taskList);
 	}
 };
 
@@ -68,6 +85,16 @@ btn.addEventListener('click', (e) => {
 	createTask(taskText.value);
 	saveTask();
 	taskText.value = '';
+});
+
+taskContainer.addEventListener('click', (e) => {
+	e.preventDefault();
+
+	const url = e.path[2].childNodes[3].innerHTML;
+
+	if (e.target.innerHTML === 'Delete') {
+		deleteTask(url);
+	}
 });
 
 document.addEventListener('DOMContentLoaded', showTask);
