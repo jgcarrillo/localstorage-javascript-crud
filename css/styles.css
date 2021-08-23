@@ -58,8 +58,17 @@ input[type='text'] {
 	transform: scale(1.1);
 }
 
-.button--delete {
+.button-table {
 	font-size: 14px;
+	font-weight: bold;
+}
+
+.button--delete {
+	background-color: lightcoral;
+}
+
+.button--edit {
+	background-color: lightseagreen;
 }
 
 .task__container {
@@ -98,9 +107,8 @@ thead {
 	padding-left: 5rem;
 }
 
-tr:nth-child(even) {
-	background-color: #444;
-	color: white;
+.done {
+	background-color: lightgreen;
 }
 
 @media only screen and (max-width: 870px) {

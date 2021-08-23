@@ -29,23 +29,6 @@ const saveTask = () => {
 	showTask();
 };
 
-/**************
- ** DELETE TASK
- *************/
-const deleteTask = (taskName) => {
-	let indexArray;
-
-	taskList.forEach((elem, index) => {
-		if (elem.task === taskName) {
-			console.log(taskName);
-			indexArray = index;
-		}
-	});
-
-	taskList.splice(indexArray, 1);
-	saveTask();
-};
-
 /*************
  ** SHOW TASKS
  *************/
@@ -63,17 +46,49 @@ const showTask = () => {
 				<tr>
 					<td>${index}</td>
 					<td>${element.task}</td>
-					<td>Edit</td>
-					<td><button class="button button--delete" id="button-delete">Delete</button></td>
+					<td><button class="button button-table button--edit" id="button-edit">Edit</button></td>
+					<td><button class="button button-table button--delete" id="button-delete">Delete</button></td>
 				</tr>
 			`;
 		});
 	}
 };
 
+/**************
+ ** DELETE TASK
+ *************/
+const deleteTask = (taskName) => {
+	let indexArray;
+
+	taskList.forEach((elem, index) => {
+		if (elem.task === taskName) {
+			indexArray = index;
+		}
+	});
+
+	taskList.splice(indexArray, 1);
+	saveTask();
+};
+
+/************
+ ** EDIT TASK
+ ************/
+const editTask = (taskName) => {
+	const urlTaskName = taskName.innerHTML;
+	const parentNode = taskName.parentNode;
+
+	taskList.forEach((elem, index) => {
+		if (elem.task === urlTaskName) {
+			parentNode.classList.toggle('done');
+		}
+	});
+};
+
 /*********
  ** EVENTS
  *********/
+
+// ADD TASK
 btn.addEventListener('click', (e) => {
 	e.preventDefault();
 
@@ -87,14 +102,22 @@ btn.addEventListener('click', (e) => {
 	taskText.value = '';
 });
 
+// DELETE OR MODIFY TASK
 taskContainer.addEventListener('click', (e) => {
 	e.preventDefault();
 
-	const url = e.path[2].childNodes[3].innerHTML;
+	if (e.target.innerHTML === 'Delete' || 'Done') {
+		const url = e.path[2].childNodes[3].innerHTML;
+		const editUrl = e.path[2].childNodes[3];
+		if (e.target.innerHTML === 'Delete') {
+			deleteTask(url);
+		}
 
-	if (e.target.innerHTML === 'Delete') {
-		deleteTask(url);
+		if (e.target.innerHTML === 'Edit') {
+			editTask(editUrl);
+		}
 	}
 });
 
+// FIRST LOADING OF THE HTML
 document.addEventListener('DOMContentLoaded', showTask);
